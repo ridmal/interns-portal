@@ -26,6 +26,10 @@
             var token = "NadunI";
             localStorage.setItem("token", JSON.stringify(token));
         }
+        else if(localStorage.getItem("role") === null){
+            var role = 'PUBLIC';
+            localStorage.setItem("role", JSON.stringify(role));
+        }
 
         service.isLoggedIn = function() {
             printService.print("1 st in isloggedin = " + localStorage.loggedIn);
@@ -48,6 +52,7 @@
             return false;
         };
 
+
         service.getUser = function() {
             //printService.print("username is = " + localStorage.username);
             var user = JSON.parse(localStorage.username);
@@ -68,6 +73,19 @@
             localStorage.setItem("isAdmin", JSON.stringify(admin));
             printService.print("set isAdmin = " + JSON.parse(localStorage.isAdmin));
         };
+
+        service.setRole = function(state){
+            var role = state;
+            localStorage.setItem("role",JSON.stringify(role));
+        }
+        service.getRole = function(){
+            var role = JSON.parse(localStorage.role);
+            var login = JSON.parse(localStorage.loggedIn);
+            if(login)
+            return role;
+            else
+            return 'PUBLIC';
+        }
 
         service.setUser = function(user) {
             localStorage.setItem("username", JSON.stringify(user));

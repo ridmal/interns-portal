@@ -62,8 +62,8 @@
 
 
         $scope.signIn = function() {
-
-            var authenticationData = {
+          
+                   var authenticationData = {
                 Username: $scope.username,
                 Password: $scope.password,
             };
@@ -87,9 +87,11 @@
                         var admin = ''; // temp bypass for the problem of 5 elements and 4 elements supply from API required a proper fix
                         for (var i = 0; i < result.length; i++) {
                             if (result[i].getName() == "name") {
+                                //console.log(result[i]);
                                 admin = result[i].getValue();
                             }
                         }
+                        AuthenticationService.setRole(admin);
 
                         if (admin == 'ADMIN') {
                             AuthenticationService.setAdmin(true);
@@ -100,7 +102,12 @@
 
                         AuthenticationService.setUser($scope.username);
                         AuthenticationService.setLoggedIn(true);
-                        $state.go('dashboard.home.users');
+                        if(admin==='INTERN'){
+                            $state.go('dashboard.profile');
+                        }
+                        else{
+                        $state.go('dashboard.registerinterviewee');
+                        }
                     });
                 },
                 onFailure: function(err) {
@@ -108,6 +115,7 @@
                 },
 
             });
+            
         };
     }
 })();

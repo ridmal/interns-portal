@@ -18,8 +18,8 @@
                 },
                 data: {
                     permissions: {
-                        only: ['AUTHORIZED'],
-                        redirectTo: function () {
+                        only: ['ADMIN','INTERN'],
+                        redirectTo: function() {
                             return {
                                 state: 'signin',
                                 options: {

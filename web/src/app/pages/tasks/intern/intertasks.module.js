@@ -18,7 +18,7 @@
                 },
                 data: {
                     permissions: {
-                        only: ['AUTHORIZED'],
+                        only: ['INTERN'],
                         redirectTo: function() {
                             return {
                                 state: 'signin',

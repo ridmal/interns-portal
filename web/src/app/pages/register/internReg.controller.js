@@ -61,7 +61,7 @@
 
                 if (response.data.status === "success") {
                     //create new Intern in Cognito DB
-                    $scope.signUp($scope.data.contactInfo.email, $scope.data.contactInfo.email, "99Xt@intern");
+                    $scope.signUp($scope.data.contactInfo.email, $scope.data.contactInfo.email, "99Xt@intern",'ADMIN');
                     toastr.success('Your information has been saved successfully!');
 
                 } else {
@@ -73,7 +73,7 @@
 
         };
 
-        $scope.signUp = function (email, username, password) {
+        $scope.signUp = function(email, username, password,role) {
 
             AWSCognito.config.region = IG.cognitoConfigRegion;
 
@@ -94,7 +94,7 @@
                 Value: '/'
             }, {
                 Name: 'name',
-                Value: 'ADMIN'
+                Value: role
             }];
 
             _.each(attributes, function (attribute) {
@@ -159,6 +159,45 @@
                     toastr.error("Unable to add interviewee");
                 }
             });
+        };
+        // register interviewr 
+        $scope.interviewerData = {};
+        $scope.addInterviewer = function() {
+            var intData = {
+                "id":  $scope.interviewerData.email,
+                "firstname":  $scope.interviewerData.firstName,
+                "fullname":  $scope.interviewerData.fullName,
+                "lastname":  $scope.interviewerData.LastName,
+                "mobile":  $scope.interviewerData.mobile,
+                "tel":  $scope.interviewerData.tel,
+                "status": "active",
+                "email":  $scope.interviewerData.email,
+            };
+        var stat = {
+                'status': 'interviewer'
+            };
+            intData = angular.merge(intData, stat);
+            $http({
+                method: 'POST',
+                url: IG.api + 'users/user',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: intData
+            }).then(function successCallback(response) {
+
+                if (response.data.status === "success") {
+                    //create new Intern in Cognito DB
+                    $scope.signUp($scope.interviewerData.email, $scope.interviewerData.email, "Intel@123",'INTERVIEWER');
+                    toastr.success('Your information has been saved successfully!');
+
+                } else {
+                    toastr.error(response.data.status);
+                }
+            }, function errorCallback(response) {
+                toastr.error(response.data);
+            });
+  
         };
     }
 

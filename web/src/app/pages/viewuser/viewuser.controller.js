@@ -63,7 +63,7 @@
                     $scope.Interviewee.splice(index, 1);
                     signUp(intern.email, intern.email, "99Xt@intern");
                 } else {
-                    toastr.error("Unable to add new intern");
+                    toastr.error("Unable to add new intern"); 
                 }
 
             });

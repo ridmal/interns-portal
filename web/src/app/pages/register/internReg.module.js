@@ -18,7 +18,7 @@
                 },
                 data: {
                     permissions: {
-                        only: ['ADMIN'],
+                        only: ['PUBLIC','INTERN','INTERVIEWER','ADMIN'],
                         redirectTo: function() {
                             return {
                                 state: 'signin',
@@ -45,6 +45,30 @@
                     redirectTo: function() {
                         return {
                             state: 'signin',
+                            options: { 
+                                reload: true
+                            }
+                        };
+                    }
+                }
+            }
+        })
+
+        .state('dashboard.registerinterviewee', {
+            url: '/registerInterviwee',
+            templateUrl: 'app/pages/register/interviewee.html',
+            title: 'Interviewee Details',
+            controller: 'internRegCtrl',
+            sidebarMeta: {
+                icon: 'ion-compose',
+                order: 100,
+            },
+            data: {
+                permissions: {
+                    only: ['PUBLIC','ADMIN','INTERVIEWER'],
+                    redirectTo: function() {
+                        return {
+                            state: 'signin',
                             options: {
                                 reload: true
                             }
@@ -54,10 +78,10 @@
             }
         })
 
-        .state('dashboard.register.interviewee', {
-            url: '/intervieweedetails',
-            templateUrl: 'app/pages/register/interviewee.html',
-            title: 'Interviewee Details',
+        .state('dashboard.register.interviewer', {
+            url: '/interviewerdetails',
+            templateUrl: 'app/pages/register/interviewer.html',
+            title: 'Interviewer Register',
             controller: 'internRegCtrl',
             sidebarMeta: {
                 order: 100,

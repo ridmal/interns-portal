@@ -18,7 +18,7 @@
                 },
                 data: {
                     permissions: {
-                        only: ['ADMIN'],
+                        only: ['ADMIN','INTERVIEWER'],
                         redirectTo: function() {
                             return {
                                 state: 'signin',

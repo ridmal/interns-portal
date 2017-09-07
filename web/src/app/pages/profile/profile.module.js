@@ -22,7 +22,7 @@
                 },
                 data: {
                     permissions: {
-                        only: ['AUTHORIZED'],
+                        only: ['INTERVIEWER','INTERN','ADMIN'],
                         redirectTo: function() {
                             return {
                                 state: 'signin',
