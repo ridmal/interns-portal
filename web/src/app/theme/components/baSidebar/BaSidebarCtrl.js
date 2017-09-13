@@ -8,13 +8,13 @@
     function BaSidebarCtrl($scope, baSidebarService, AuthenticationService) {
 
         var removeIntern = [
-            {name: "addtasks"}, {name: "register"}, {name: "viewuser"},{name:"internstasks"},{name:"home"},{name:"addReview"},{name:"registerinterviewee"}]; // removed routes for intern 
+            {name: "addtasks"}, {name: "register"}, {name: "viewuser"},{name:"internstasks"},{name:"home"},{name:"addReview"},{name:"registerinterviewee"},{name:"registerinterviewee"},{name:"rejected"}]; // removed routes for intern 
         var removePublic = [
             {name:"addtasks"},{name: "register"},{name:"profile"},{name:"viewuser"},{name:"viewtasks"},{name:"internstasks"}
-            ,{name:"home"},{name:"addReview"}]; // removed routes for public user 
+            ,{name:"home"},{name:"addReview"},{name:"rejected"}]; // removed routes for public user 
         var removeAdmins = [{name : "viewtasks"},{name : "internstasks"}]; // removed routes for  Admin
-        var removeInterviwer = [{name:"addtasks"},{name: "register"},{name:"profile"},{name:"viewuser"},{name:"viewtasks"},{name:"internstasks"}
-            ,{name:"home"},{name:"addReview"}]; // removed routes for Interviwer 
+        var removeInterviwer = [{name:"addtasks"},{name: "register"},{name:"profile"},{name:"viewtasks"},{name:"internstasks"}
+            ,{name:"home"},{name:"addReview"},{name:"rejected"}]; // removed routes for Interviwer 
 
         $scope.menuItems = baSidebarService.getMenuItems();
         $scope.defaultSidebarState = $scope.menuItems[0].stateRef;
